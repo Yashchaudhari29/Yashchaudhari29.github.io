@@ -1,0 +1,60 @@
+body {
+    background-color:blueviolet;
+}
+
+.container>form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+    margin-top: 10%;
+    padding: 60px;
+    background-color: rgb(56, 56, 56);
+    border-radius: 20px;
+}
+
+#btn {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 100px;
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    padding: 10px 20px;
+    transition-duration: .5s;
+}
+
+#btn:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+#textarea {
+    background-color: rgb(231, 231, 231);
+    border-radius: 5px;
+    outline: none;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#name {
+     border: none;
+    background-color: rgb(231, 231, 231);
+    padding: 5px;
+    height: 5%;
+    border-radius: 5px;
+    width: auto;
+    margin-bottom: 20px;
+    outline: none;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* 
+
+Responsive Content
+
+*/
+
