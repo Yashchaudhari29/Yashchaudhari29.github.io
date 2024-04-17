@@ -8,6 +8,7 @@ var options = {
   ],
   typeSpeed: 15,
   backSpeed: 25,
+  startDelay: 1000,
   backDelay: 1500,
   loop: true
 };
