@@ -6,8 +6,8 @@ var options = {
     "I am an enthusiastic Techie!✍🏻",
     "Thanks for visiting my page!🙏🏻"
   ],
-  typeSpeed: 100,
-  backSpeed: 100,
+  typeSpeed: 120,
+  backSpeed: 120,
   backDelay: 2000,
   loop: true
 };
