@@ -3,7 +3,7 @@ document.querySelector(".btn").addEventListener("click", function () {
   var cvUrl = './Yash Chaudhari.pdf';
   var link = document.createElement("a");
   link.href = cvUrl;
-  link.download = "Yash CV.pdf";
+  link.download = "Yash Chaudhari.pdf";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
