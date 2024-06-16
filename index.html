@@ -22,6 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style1.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://code.iconify.design/3/3.0.1/iconify.min.js"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
@@ -65,6 +66,7 @@
                 <ul class="menu-items d-flex">
                     <li class="act menu-item" data-aos="zoom-in" data-aos-duration="2000"><a href="#home">Home</a></li>
                     <li class="menu-item" data-aos="zoom-in" data-aos-duration="2000"><a href="#about">About</a></li>
+                    <li class="menu-item"><a href="#experience">Experience</a>
                     <li class="menu-item" data-aos="zoom-in" data-aos-duration="2000"><a href="#tech-skills">Skills</a>
                     </li>
                     <li class="menu-item" data-aos="zoom-in" data-aos-duration="2000"><a href="#projects">Projects</a>
@@ -106,8 +108,8 @@
     <div class="custom-op">
         <section id="about" class="container full-vh d-flex-col-center">
 
-            <h2 class="title-section">About</h2>
-            <div class="about-desc about-card bg-dark">
+            <h2 class="title-section" style="margin-bottom: 0px;">About</h2>
+            <span class="about-desc about-card bg-dark">
                 <p>
                     I'm Yash, an extrovert who thrives on building friendships and cherishes the energy of social
                     interaction.
@@ -181,11 +183,42 @@
                         </section>
                     </div>
                 </div>
-            </div>
+            </span>
 
     </div>
     </section>
     </div>
+
+
+
+    <!-- Experience Section -->
+
+
+    <section id="experience" class="col container full-vh" style="margin-left: 5%; margin-right: 5%;">
+
+        <h2 class="title-section" style="display: block; text-align: center;">Experience</h2>
+    
+        <div class="contents">
+            <div class="box d-flex">
+                <div style="margin-top: 10px;" class="img">
+                    <img src="./assets/ongc_logo.png" width="200" style="border-radius: 4px;">
+                </div>
+                <div style="margin-left: 2%;">
+                    <div class="button-containerf">
+                    <h4>May 2024 - Jun 2024</h4>
+                    <span class="certibtn" id="ONGC-certi">Certificate</span>&nbsp;&nbsp;&nbsp;
+                    <span class="lorbtn" id="lor-download">LOR</span>
+                </div>
+                
+                    <h3>IT Intern @ INFOCOM ONGC MEHSANA </h3>
+                    <p style="text-align: justify;">Led advanced <b>NLP</b> initiatives to extract critical insights from historical ONGC documents. Designed and implemented a robust <b>Issue Control and Collaboration</b> system using Laravel, optimizing issue management with clearly defined roles (OM, IM, SI). Pioneered the automation of NOC letter generation in the <b>Demand & Non-Demand</b> project, employing Laravel and advanced data science techniques. Conducted comprehensive analyses of <b>SCADA</b> operations and architectures, enhancing operational efficiencies across ONGC.Additionally, orchestrated the <b>DPR-Daily Production Report</b>, synthesizing complex operational data into actionable daily insights, benefiting over a thousand employees and enhancing decision-making processes. All projects are currently live<span class="blink">🔴</span> and actively utilized in the field at ONGC, delivering significant value and operational enhancements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
 
 
     <!-- skill section  -->
@@ -247,12 +280,6 @@
                 <span data-aos="zoom-in" data-aos-duration="2000">Firebase</span>
             </div>
             <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <img class="rot"
-                    src="https://camo.githubusercontent.com/a7553749f374bd64a02e5141697c24aeb9955ff99bb6de2ef80f4c1b6eb2ad6f/68747470733a2f2f7777772e766563746f726c6f676f2e7a6f6e652f6c6f676f732f6865726f6b752f6865726f6b752d69636f6e2e737667"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">Heroku</span>
-            </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
                 <div data-aos="zoom-in" data-aos-duration="2000"><span class="iconify rot" data-icon="logos:bootstrap"
                         data-width="40" data-height="40"></span></div>
                 <span data-aos="zoom-in" data-aos-duration="2000">Bootstrap</span>
@@ -293,7 +320,7 @@
                     src="https://camo.githubusercontent.com/2d609418566a429782a470abad1fb6aa1c4f1311a139c0c98fddf16b05bfacc2/68747470733a2f2f7777772e766563746f726c6f676f2e7a6f6e652f6c6f676f732f6f70656e63762f6f70656e63762d69636f6e2e737667"
                     width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
                 <span data-aos="zoom-in" data-aos-duration="2000">OpenCV</span>
-            </div>
+            </div>                               
             <div class="micro-card skill-card d-flex-col-center hover bg-dark">
                 <img class="rot"
                     src="https://camo.githubusercontent.com/4592b4c82382213c9b29aec5d01698ae1a6f2121747bbeb649e1ec56263f6921/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f302f30352f5363696b69745f6c6561726e5f6c6f676f5f736d616c6c2e737667"
@@ -317,6 +344,12 @@
                     src="https://user-images.githubusercontent.com/25181517/223639822-2a01e63a-a7f9-4a39-8930-61431541bc06.png"
                     width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
                 <span data-aos="zoom-in" data-aos-duration="2000">TensorFlow</span>
+            </div>
+            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+                <img class="rot"
+                    src="https://github.com/marwin1991/profile-technology-icons/assets/76662862/2481dc48-be6b-4ebb-9e8c-3b957efe69fa"
+                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
+                <span data-aos="zoom-in" data-aos-duration="2000">Linux</span>
             </div>
             <div class="micro-card skill-card d-flex-col-center hover bg-dark">
                 <div data-aos="zoom-in" data-aos-duration="2000"><span class="iconify rot"
@@ -471,6 +504,10 @@
     </section>
     </div>
     </div>
+
+
+        <!-- links -->
+         
     <div class="bg-black">
         <section id="links" class="container full-vh d-flex-col-center">
             <h2 class="title-section">Links</h2>
