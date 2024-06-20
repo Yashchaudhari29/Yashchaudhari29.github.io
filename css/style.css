@@ -360,11 +360,33 @@ label {
     font-weight: 400;
 }
 
+.typed-python,.typed-js,.typed-pbi {
+    color: yellow; /* Change to your desired color for Python */
+}
+
+.typed-django,.typed-mongo {
+    color: #00b421; /* Change to your desired color for Django */
+}
+
+.typed-ml,.typed-sql {
+    color: rgb(0, 157, 255); /* Change to your desired color for ML */
+}
+.typed-ds{
+    color: chartreuse;
+}
+.typed-html,.typed-laravel {
+    color: var(--color-red); /* Change to your desired color for ML */
+}
+.typed-css{
+    color: lightskyblue;
+}
+.typed-cursor {
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
 .iam-job {
-    color: yellow;
     font-size: 3.2rem;
-    background-color: rgba(0, 153, 255, 0);
-    border-radius: 5px;
 }
 
 .arrow-icon {
@@ -487,8 +509,7 @@ label {
 
 .micro-card {
     color: var(--color-white);
-    background-color: var(--color-dark);
-
+    background-color: var(--color-gray);
     width: 12rem;
     height: 12rem;
     padding: 1.6rem 2.4rem;

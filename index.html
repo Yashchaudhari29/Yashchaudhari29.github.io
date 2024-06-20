@@ -35,19 +35,56 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
-        #tsparticles {
+        /* #tsparticles {
             position: relative;
             width: 100%;
             height: 100%;
             z-index: -100;
             opacity: 0.7;
-        }
+        } */
 
         .typed-cursor {
             color: yellow;
             font-weight: bolder;
             font-size: xx-large;
         }
+
+.progress-container {
+    width: 100%;
+    height: 5px;
+    position: fixed;
+    top: 60px; 
+    left: 0;
+    z-index: 999; 
+    overflow: hidden; 
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #ffd700; 
+    position: relative;
+    border-radius: 5px; 
+    transition: width 0.3s ease; 
+}
+
+@keyframes glow-animation {
+    0% {
+        box-shadow: 0 0 10px rgba(175, 151, 11, 0.8); 
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); 
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.8); 
+    }
+}
+
+        
+
+        
+
+
     </style>
 </head>
 
@@ -55,7 +92,6 @@
     <div class="topbar-fixed bg-dark">
         <header class="container topbar d-flex bg-dark custom">
             <input type="checkbox" name="open-close-menu" id="open-close-menu" class="op" hidden>
-            <!-- <input type="checkbox"  id="" class="op" hidden> -->
             <label for="open-close-menu" class="menu-icon">
                 <span class="bar-1"></span>
                 <span class="bar-2"></span>
@@ -71,7 +107,7 @@
                     </li>
                     <li class="menu-item" data-aos="zoom-in" data-aos-duration="2000"><a href="#projects">Projects</a>
                     </li>
-                    <li class="menu-item" data-aos="zoom-in" data-aos-duration="2000"><a href="#footersec">Links</a></li>
+                    <li class="menu-item" data-aos="zoom-in" data-aos-duration="2000"><a href="#links">Links</a></li>
                 </ul>
             </nav>
             <li class="">
@@ -87,11 +123,14 @@
 
 
     <section id="home" class="container full-vh d-flex-col-center">
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <div class="presentation">
             <span class="hi">Hello there (<img src="/assets/wave-hello.gif" alt=""
                     style="width: 2.4em; margin-bottom: -15px;">) I am</span>
             <h1 id="iam">Yash Chaudhari</h1>
-            <span id="iama"><span class="multiple-filed iam-job"></span>
+            <span id="iama">-I am proficient in</span>&nbsp;&nbsp;<span class="multiple-filed iam-job"></span>
         </div>
         <div class="presentation1">
             <img class="avatar rotimg hover" id="img" src="/assets/y1.jpg" alt="Img.." loading="lazy">
@@ -206,8 +245,10 @@
                 <div style="margin-left: 2%;">
                     <div class="button-containerf">
                     <h4>May 2024 - Jun 2024</h4>
-                    <span class="certibtn" id="ONGC-certi">Certificate</span>&nbsp;&nbsp;&nbsp;
-                    <span class="lorbtn" id="lor-download">LOR</span>
+                    <div class="links">
+                        <a class="certibtn" id="ONGC-certi">Certificate</a>
+                        <a class="lorbtn" id="lor-download">LOR</a>
+                    </div>
                 </div>
                 
                     <h3>IT Intern @ INFOCOM ONGC MEHSANA </h3>
@@ -227,152 +268,185 @@
     <section id="tech-skills" class="container full-vh d-flex-col-center">
         <h2 class="title-section">Skills</h2>
         <div class="micro-cards skill-cards d-flex">
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <div data-aos="zoom-in" data-aos-duration="2000"><span class="iconify rot"
-                        data-icon="vscode-icons:file-type-python" data-width="40" data-height="40" data-aos="zoom-in"
-                        data-aos-duration="2000"></span></div>
-                <span data-aos="zoom-in" data-aos-duration="2000">Python</span>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div><span class="iconify rot" data-icon="vscode-icons:file-type-python" data-width="40"
+                        data-height="40"></span></div>
+                <span>Python</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <div data-aos="zoom-in" data-aos-duration="2000"><span class="iconify rot"
-                        data-icon="vscode-icons:file-type-django" data-width="40" data-height="40" data-aos="zoom-in"
-                        data-aos-duration="2000"></span></div>
-                <span data-aos="zoom-in" data-aos-duration="2000">Django</span>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div><span class="iconify rot" data-icon="vscode-icons:file-type-c" data-width="40"
+                        data-height="40"></span></div>
+                <span>C</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <div data-aos="zoom-in" data-aos-duration="2000"><span data-aos="zoom-in" data-aos-duration="2000"
-                        class="iconify rot" data-icon="logos:pandas" data-width="60" data-height="40"></span></div>
-                <span data-aos="zoom-in" data-aos-duration="2000" class="rmv">Pandas</span>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div><span class="iconify rot" data-icon="vscode-icons:file-type-cpp" data-width="40"
+                        data-height="40"></span></div>
+                <span>C++</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <div data-aos="zoom-in" data-aos-duration="2000"><span class="iconify rot" data-icon="logos:mysql"
-                        data-width="40" data-height="40" data-aos="zoom-in" data-aos-duration="2000"></span></div>
-                <span data-aos="zoom-in" data-aos-duration="2000">SQL</span>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div><span class="iconify rot" data-icon="vscode-icons:file-type-java" data-width="40"
+                        data-height="40"></span></div>
+                <span>Java</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div><span class="iconify rot" data-icon="logos:mysql" data-width="40" data-height="40"></span></div>
+                <span>SQL</span>
+            </div>
+            <div class="micro-card skill-card d-flex-col-center hover">
                 <img class="rot"
                     src="https://user-images.githubusercontent.com/25181517/117208736-bdedc080-adf5-11eb-912f-61c7d43705f6.png"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">Oracle</span>
+                    width="40" height="40">
+                <span>Oracle</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+            <div class="micro-card skill-card d-flex-col-center hover">
                 <img class="rot"
                     src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">PostgreSQL</span>
+                    width="40" height="40">
+                <span>PostgreSQL</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+            <div class="micro-card skill-card d-flex-col-center hover">
                 <img class="rot"
                     src="https://github.com/marwin1991/profile-technology-icons/assets/136815194/82df4543-236b-4e45-9604-5434e3faab17"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">SQLite</span>
+                    width="40" height="40">
+                <span>SQLite</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+            <div class="micro-card skill-card d-flex-col-center hover">
                 <img class="rot"
                     src="https://user-images.githubusercontent.com/25181517/182884177-d48a8579-2cd0-447a-b9a6-ffc7cb02560e.png"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">mongoDB</span>
+                    width="40" height="40">
+                <span>mongoDB</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+            <div class="micro-card skill-card d-flex-col-center hover">
                 <img class="rot"
                     src="https://user-images.githubusercontent.com/25181517/189716855-2c69ca7a-5149-4647-936d-780610911353.png"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">Firebase</span>
+                    width="40" height="40">
+                <span>Firebase</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <div data-aos="zoom-in" data-aos-duration="2000"><span class="iconify rot" data-icon="logos:bootstrap"
-                        data-width="40" data-height="40"></span></div>
-                <span data-aos="zoom-in" data-aos-duration="2000">Bootstrap</span>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <img class="rot"
+                    src="https://camo.githubusercontent.com/a7553749f374bd64a02e5141697c24aeb9955ff99bb6de2ef80f4c1b6eb2ad6f/68747470733a2f2f7777772e766563746f726c6f676f2e7a6f6e652f6c6f676f732f6865726f6b752f6865726f6b752d69636f6e2e737667"
+                    width="40" height="40">
+                <span>Heroku</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <div data-aos="zoom-in" data-aos-duration="2000"><span class="iconify rot"
-                        data-icon="vscode-icons:file-type-html" data-width="40" data-height="40"></span></div>
-                <span data-aos="zoom-in" data-aos-duration="2000">HTML</span>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <img class="rot"
+                    src="https://user-images.githubusercontent.com/25181517/117207330-263ba280-adf4-11eb-9b97-0ac5b40bc3be.png"
+                    width="50" height="40">
+                <span>Docker</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <div data-aos="zoom-in" data-aos-duration="2000"><span class="iconify rot"
-                        data-icon="vscode-icons:file-type-css" data-width="40" data-height="40" data-aos="zoom-in"
-                        data-aos-duration="2000"></span></div>
-                <span data-aos="zoom-in" data-aos-duration="2000">CSS</span>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div><span class="iconify rot" data-icon="vscode-icons:file-type-django" data-width="40"
+                        data-height="40"></span></div>
+                <span>Django</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <div data-aos="zoom-in" data-aos-duration="2000"><span class="iconify rot" data-icon="logos:javascript"
-                        data-width="40" data-height="40"></span></div>
-                <span data-aos="zoom-in" data-aos-duration="2000">Javascript</span>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <img class="rot"
+                    src="https://github.com/marwin1991/profile-technology-icons/assets/25181517/afcf1c98-544e-41fb-bf44-edba5e62809a"
+                    width="40" height="40">
+                <span>Laravel</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <div data-aos="zoom-in" data-aos-duration="2000"><span class="iconify rot"
-                        data-icon="vscode-icons:file-type-c" data-width="40" data-height="40"></span></div>
-                <span data-aos="zoom-in" data-aos-duration="2000">C</span>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div><span class="iconify rot" data-icon="logos:bootstrap" data-width="40" data-height="40"></span>
+                </div>
+                <span>Bootstrap</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <div data-aos="zoom-in" data-aos-duration="2000"><span class="iconify rot"
-                        data-icon="vscode-icons:file-type-cpp" data-width="40" data-height="40"></span></div>
-                <span data-aos="zoom-in" data-aos-duration="2000">C++</span>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div><span class="iconify rot" data-icon="vscode-icons:file-type-html" data-width="40"
+                        data-height="40"></span></div>
+                <span>HTML</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <div data-aos="zoom-in" data-aos-duration="2000"><span class="iconify rot"
-                        data-icon="vscode-icons:file-type-java" data-width="40" data-height="40"></span></div>
-                <span data-aos="zoom-in" data-aos-duration="2000">Java</span>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div><span class="iconify rot" data-icon="vscode-icons:file-type-css" data-width="40"
+                        data-height="40"></span></div>
+                <span>CSS</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div><span class="iconify rot" data-icon="logos:javascript" data-width="37" data-height="37"></span>
+                </div>
+                <span>Javascript</span>
+            </div>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div><span style="background-color: white; padding: 0px 2px; border-radius: 5px;" class="iconify rot"
+                        data-icon="logos:pandas" data-width="60" data-height="40"></span></div>
+                <span class="rmv">Pandas</span>
+            </div>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div>
+                    <svg height="40" width="40" class="rot" preserveAspectRatio="xMidYMid"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 273.612">
+                        <path
+                            d="M191.548 186.292l.06 60.52-53.705 26.8v-60.494zM256 153.947v60.731l-45.805 22.86-.033-60.454zm-64.533-48.66l.06 59.885-53.625 26.647v-59.905zm64.533-32.082v59.509l-45.851 23.309-.04-60.005zm-126.262-7.04l47.933 24.195-49.731 24.975-47.028-23.62zM63.065 32.511l45.718 23.077-48.938 25.543-46.954-23.58zm130.69.35l49.243 24.69-44.04 22.12-48.032-24.228zM128.233 0l44.33 22.225-42.506 22.694L84.377 21.88z"
+                            fill="#4dabcf" />
+                        <path
+                            d="M118.944 131.914L82.77 113.728v78.606S38.533 98.207 34.434 89.752c-.528-1.091-2.703-2.288-3.259-2.578C23.243 83.009 0 71.235 0 71.235V210.11l32.154 17.188v-72.59s43.768 84.105 44.211 85.024c.443.92 4.84 9.784 9.533 12.897 6.253 4.139 33.053 20.255 33.053 20.255z"
+                            fill="#4d77cf" />
+                    </svg>
+                </div>
+                <span>NumPy</span>
+            </div>
+            <div class="micro-card skill-card d-flex-col-center hover">
                 <img class="rot"
                     src="https://camo.githubusercontent.com/2d609418566a429782a470abad1fb6aa1c4f1311a139c0c98fddf16b05bfacc2/68747470733a2f2f7777772e766563746f726c6f676f2e7a6f6e652f6c6f676f732f6f70656e63762f6f70656e63762d69636f6e2e737667"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">OpenCV</span>
-            </div>                               
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+                    width="40" height="40">
+                <span>OpenCV</span>
+            </div>
+            <div class="micro-card skill-card d-flex-col-center hover">
                 <img class="rot"
                     src="https://camo.githubusercontent.com/4592b4c82382213c9b29aec5d01698ae1a6f2121747bbeb649e1ec56263f6921/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f302f30352f5363696b69745f6c6561726e5f6c6f676f5f736d616c6c2e737667"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">sklearn</span>
+                    width="40" height="40">
+                <span>sklearn</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+            <div class="micro-card skill-card d-flex-col-center hover">
                 <img class="rot"
                     src="https://camo.githubusercontent.com/1e72f25c526d43089e8363a10ac4d99eb6e1cf613652c659d77bcdeeda657356/68747470733a2f2f7777772e766563746f726c6f676f2e7a6f6e652f6c6f676f732f7079746f7263682f7079746f7263682d69636f6e2e737667"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">PyTorch</span>
+                    width="40" height="40">
+                <span>PyTorch</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+            <div class="micro-card skill-card d-flex-col-center hover">
                 <img class="rot"
                     src="https://camo.githubusercontent.com/9fd2f327a5cbb4cc78b8d2ec991eba5b1fd1f9bf06a3f52904da58e6ff18361e/68747470733a2f2f736561626f726e2e7079646174612e6f72672f5f696d616765732f6c6f676f2d6d61726b2d6c6967687462672e737667"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">Seaborn</span>
+                    width="40" height="40">
+                <span>Seaborn</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+            <div class="micro-card skill-card d-flex-col-center hover">
                 <img class="rot"
                     src="https://user-images.githubusercontent.com/25181517/223639822-2a01e63a-a7f9-4a39-8930-61431541bc06.png"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">TensorFlow</span>
+                    width="40" height="40">
+                <span>TensorFlow</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <img class="rot"
-                    src="https://github.com/marwin1991/profile-technology-icons/assets/76662862/2481dc48-be6b-4ebb-9e8c-3b957efe69fa"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">Linux</span>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div><span class="iconify rot" data-icon="vscode-icons:file-type-git" data-width="40"
+                        data-height="40"></span></div>
+                <span>Git</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
-                <div data-aos="zoom-in" data-aos-duration="2000"><span class="iconify rot"
-                        data-icon="vscode-icons:file-type-git" data-width="40" data-height="40"></span></div>
-                <span data-aos="zoom-in" data-aos-duration="2000">Git</span>
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <div><span class="iconify rot" data-icon="vscode-icons:file-type-gitlab" data-width="40"
+                        data-height="40"></span></div>
+                <span>GitLab</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+            <div class="micro-card skill-card d-flex-col-center hover">
                 <img class="rot"
                     src="https://user-images.githubusercontent.com/25181517/192108374-8da61ba1-99ec-41d7-80b8-fb2f7c0a4948.png"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">Github</span>
+                    width="40" height="40">
+                <span>Github</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+            <div class="micro-card skill-card d-flex-col-center hover">
+                <img class="rot"
+                    src="https://github.com/marwin1991/profile-technology-icons/assets/76662862/2481dc48-be6b-4ebb-9e8c-3b957efe69fa"
+                    width="40" height="40">
+                <span>Linux</span>
+            </div>
+            <div class="micro-card skill-card d-flex-col-center hover">
                 <img class="rot"
                     src="https://user-images.githubusercontent.com/25181517/192108891-d86b6220-e232-423a-bf5f-90903e6887c3.png"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">VSCode</span>
+                    width="40" height="40">
+                <span>VSCode</span>
             </div>
-            <div class="micro-card skill-card d-flex-col-center hover bg-dark">
+            <div class="micro-card skill-card d-flex-col-center hover">
                 <img class="rot"
                     src="https://user-images.githubusercontent.com/25181517/183914128-3fc88b4a-4ac1-40e6-9443-9a30182379b7.png"
-                    width="40" height="40" data-aos="zoom-in" data-aos-duration="2000">
-                <span data-aos="zoom-in" data-aos-duration="2000">Jupyter</span>
+                    width="40" height="40">
+                <span>Jupyter</span>
             </div>
         </div>
     </section>

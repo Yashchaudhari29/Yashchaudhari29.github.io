@@ -71,8 +71,16 @@
 
 
 .button-containerf {
-    display: inline-flexbox;
-    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    gap: 10px;
+}
+
+.links {
+    display: flex;
+    gap: 10px; 
 }
 
 .certibtn {
@@ -167,6 +175,8 @@
     }
     .box p {
         font-size: small;
+        word-break: break-word;
+        hyphens: auto;
     }
 }
 
@@ -182,9 +192,20 @@
     }
     .box p {
         font-size: 10px;
+        word-break: break-word;
+        hyphens: auto;
     }
 }
-
+@media (max-width: 480px) {
+    .button-containerf {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .links {
+        flex-direction: column;
+    }
+    
+}
 
 b{
     color:yellow;
