@@ -421,8 +421,10 @@ label {
     margin-top: 7rem;
     width: 50rem;
     border-radius: 50%;
-    border: 0.5rem solid var(--color-dark);
-    background: radial-gradient(circle, rgba(255, 252, 0, 1) 20%, rgba(0, 215, 255, 1) 100%);
+    border: 9px solid rgb(0, 195, 255);
+    background-color: var(--color-eye);
+    /* border-bottom: 1rem solid rgb(0, 213, 255); */
+    /* background: radial-gradient(circle, rgba(255, 252, 0, 1) 20%, rgba(0, 215, 255, 1) 100%); */
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
