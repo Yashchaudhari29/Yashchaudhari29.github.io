@@ -1,0 +1,15 @@
+# GitHub Pages/Jekyll: publish the website, not local tooling or audit artifacts.
+exclude:
+  - node_modules
+  - tools
+  - tests
+  - package.json
+  - package-lock.json
+  - tailwind.config.cjs
+  - media.config.json
+  - css/tailwind-input.css
+  - MEDIA-PERFORMANCE.md
+  - SEO-SECURITY.md
+  - inject.py
+  - inject_projects.py
+  - script.py

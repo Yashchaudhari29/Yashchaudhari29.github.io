@@ -1,0 +1,18 @@
+{
+  "desktop": {
+    "count": 181,
+    "fps": 18.015011909424125,
+    "width": 1920,
+    "height": 1080,
+    "base": "/frames/desktop/",
+    "pattern": "frame_%03d.webp"
+  },
+  "mobile": {
+    "count": 30,
+    "fps": 2.90241858540722,
+    "width": 1920,
+    "height": 1080,
+    "base": "/frames/mobile/",
+    "pattern": "frame_%03d.webp"
+  }
+}

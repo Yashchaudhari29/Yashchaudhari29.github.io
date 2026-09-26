@@ -2,13 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data: https://images.higgs.ai; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self' https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; media-src 'self' https://d8j0ntlcm91z4.cloudfront.net; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Yash Chaudhari — AI Engineer | ML • LLMs • NLP • Generative AI. B.E. IT, IT Intern @ ONGC.">
+  <meta name="description" content="Explore Yash Chaudhari’s AI, machine learning and full-stack projects, including NLP, computer vision and production systems built during his ONGC internship.">
   <meta name="author" content="Yash Chaudhari">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#090b0d">
   <link rel="icon" type="image/png" href="/assets/y4.png">
 
   <!-- OpenGraph & Twitter Card for social media previews -->
+  <meta property="og:site_name" content="Yash Chaudhari Portfolio">
+  <meta property="og:locale" content="en_IN">
+  <meta property="og:image:alt" content="Yash Chaudhari, AI and machine learning engineer">
+  <meta name="twitter:image:alt" content="Yash Chaudhari, AI and machine learning engineer">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Yash Chaudhari — AI Engineer">
   <meta property="og:description" content="AI Engineer specializing in ML, LLMs, NLP & Generative AI. B.E. IT, IT Intern @ ONGC.">
@@ -20,44 +27,23 @@
   <meta name="twitter:image" content="https://yashchaudhari29.github.io/assets/Yash.jpg">
 
   <!-- No-JS fallback: make content visible if JavaScript is disabled -->
-  <noscript><style>.reveal,.reveal-x{opacity:1!important;transform:none!important;}</style></noscript>
+  <noscript><style>.reveal,.reveal-x{opacity:1!important;transform:none!important;}#intro-screen{display:none!important;}</style></noscript>
   <!-- Canonical Link for SEO -->
   <link rel="canonical" href="https://yashchaudhari29.github.io/">
   
-  <title>Yash Chaudhari — AI Engineer</title>
+  <title>Yash Chaudhari | AI &amp; ML Engineer · Full-Stack Developer</title>
 
   <!-- Google Fonts: Instrument Serif + Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter','system-ui','sans-serif'],
-            serif: ['Instrument Serif','Georgia','serif'],
-          },
-          colors: {
-            accent: '#38dd76',
-            cream: '#F6E4CF',
-            'cream-dark': '#321C04',
-            'cream-muted': '#D9C4AA',
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Icons -->
-  <script src="https://code.iconify.design/3/3.0.1/iconify.min.js" defer></script>
+<!-- Icons -->
+  <script src="/script/vendor/iconify-3.0.1.min.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <!-- Typed.js -->
-  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script src="/script/vendor/typed-2.1.0.umd.js" defer></script>
 
   <style>
     :root {
@@ -448,25 +434,76 @@
     .sh-bar:nth-child(3){ height:6px;  animation-delay:0.4s; }
     @keyframes shBar{ 0%,100%{opacity:0.2;transform:scaleY(1);} 50%{opacity:1;transform:scaleY(1.3);} }
 
-    /* ── Mobile: disable avatar photo hover expansion to prevent overflow ── */
-    @media (max-width: 767px) {
-      #avatar-card > div:first-child {
-        height: 80px !important;
-        width: 70px !important;
-        transition: none !important;
-      }
-      #avatar-card.auto-expand > div:first-child {
-        height: 80px !important;
-        width: 70px !important;
-      }
+    /* Photo fills the left column; content stays balanced on the right at every size. */
+    #avatar-card {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      align-items: stretch;
+      width: min(100%, 30rem);
+      padding: 0.75rem;
+      gap: 0.75rem;
+      text-align: center;
+      cursor: default;
     }
-    @media (min-width: 640px) and (max-width: 767px) {
-      #avatar-card > div:first-child {
-        height: 120px !important;
-        width: 100px !important;
-      }
+    #avatar-card > div:first-child,
+    #avatar-card.auto-expand > div:first-child {
+      width: 100% !important;
+      height: auto !important;
+      min-height: 210px;
+      border-radius: 1rem;
+    }
+    #avatar-card > div:nth-child(2) {
+      min-width: 0;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 0;
+      transform: none !important;
+    }
+    #avatar-card > div:nth-child(2) > a {
+      max-width: 100%;
+      justify-content: center;
+      gap: 0.375rem;
+      padding-inline: clamp(0.5rem, 2vw, 1.25rem);
+      white-space: nowrap;
+    }
+    #avatar-card > div:nth-child(2) > a > svg { flex-shrink: 0; }
+    @media (max-width: 1023px) {
+      #hero-bottom { flex-direction: column; align-items: stretch; }
+      #avatar-card { align-self: center; }
     }
   </style>
+  <!-- Preserve the original CDN-injected utility cascade after custom styles. -->
+  <link rel="stylesheet" href="/css/tailwind.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": "https://yashchaudhari29.github.io/#profile",
+  "url": "https://yashchaudhari29.github.io/",
+  "name": "Yash Chaudhari — AI & ML Engineer",
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "https://yashchaudhari29.github.io/#person",
+    "name": "Yash Chaudhari",
+    "url": "https://yashchaudhari29.github.io/",
+    "image": "https://yashchaudhari29.github.io/assets/Yash.jpg",
+    "jobTitle": "AI and Machine Learning Engineer",
+    "description": "AI, machine learning and full-stack developer building NLP, computer vision and production applications.",
+    "sameAs": [
+      "https://github.com/Yashchaudhari29",
+      "https://www.linkedin.com/in/yash-chaudhari-254961242/"
+    ],
+    "knowsAbout": [
+      "Machine learning",
+      "Natural language processing",
+      "Computer vision",
+      "Python",
+      "Django",
+      "Full-stack development"
+    ]
+  }
+}
+  </script>
 </head>
 
 <body class="bg-[#090b0d] text-white antialiased" style="overflow-x:clip">
@@ -534,15 +571,13 @@
 
   <!-- SCROLL-SCRUBBED VIDEO LAYER (NovaAI pipeline) -->
   <div class="bg-video-layer" id="videoLayer">
-    <img id="vPoster" src="/assets/Yash.jpg" alt="" style="object-position:center top;opacity:1;">
-    <video id="vEl" muted playsinline preload="auto" style="opacity:0" crossorigin="anonymous">
-      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260729_102822_0e6c87e8-c141-4744-bf32-ad30db296371.mp4" type="video/mp4">
-    </video>
+    <img id="vPoster" src="/frames/mobile/frame_000.webp" alt="" style="object-position:center;opacity:1;">
     <canvas id="vCanvas" style="opacity:0"></canvas>
     <!-- Cinematic scrim overlay -->
     <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 10%,rgba(0,0,0,.04),rgba(0,0,0,.38) 60%),linear-gradient(180deg,rgba(6,8,10,.44) 0%,rgba(6,8,10,.55) 50%,rgba(6,8,10,.75) 100%)"></div>
   </div>
 
+  <main id="main-content">
   <!-- CONTENT OVER VIDEO -->
   <div class="relative z-10">
 
@@ -562,7 +597,7 @@
         </div>
       </div>
       <!-- Bottom row: badge + H1 | avatar card -->
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mt-16 sm:mt-0">
+      <div id="hero-bottom" class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mt-16 sm:mt-0">
         <div>
           <div class="reveal badge-lb rounded-sm mb-5 flex-col" style="transition-delay:150ms">
   <span class="font-serif text-xs tracking-[.25em] text-white/90 block">
@@ -585,7 +620,7 @@
           <div class="flex flex-col gap-1.5 pr-0 sm:pr-4 md:pr-6 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2 group-hover:-translate-y-2">
             <span class="text-base sm:text-xl font-semibold text-white drop-shadow-md">Talk with Yash</span>
             <span class="font-mono text-[10px] sm:text-xs uppercase tracking-[.12em] text-white/60">B.E IT · AI/ML</span>
-            <span class="font-mono text-[11px] sm:text-xs text-[#38dd76] min-h-[16px] font-medium"><span id="heroTyped"></span></span>
+            <span class="font-mono text-[11px] sm:text-xs text-[#38dd76] min-h-[16px] font-medium"><span id="heroTyped">ML Engineer</span></span>
             <a href="#contact" class="mag-btn mt-3 sm:mt-5 inline-flex w-max items-center gap-2 rounded-full bg-white px-6 py-3 text-xs sm:text-sm font-bold text-black hover:bg-[#38dd76] hover:text-black hover:shadow-[0_0_20px_rgba(56,221,118,0.4)] transition-all duration-300">
               Let's Connect
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="transition-transform duration-300 group-hover:translate-x-1"><polyline points="9 18 15 12 9 6"/></svg>
@@ -675,7 +710,7 @@
   <!-- ═══════ SECTION 3: PHILOSOPHY / ABOUT (Cinematic Video) ═══════ -->
   <section id="about" class="relative overflow-hidden rounded-t-[25px] px-5 sm:px-8 md:px-14 py-20 md:py-32" style="z-index:11;margin-top:-25px">
     <!-- Cinematic Video Background -->
-    <video autoplay loop muted playsinline preload="none" class="absolute inset-0 w-full h-full object-cover z-0 opacity-80 lazy-video" style="object-position:center top" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260821_114821_a8ca298f-be2c-4613-a4dd-51b69e16bbde.mp4"></video>
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-80 lazy-video" style="object-position:center top" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260821_114821_a8ca298f-be2c-4613-a4dd-51b69e16bbde.mp4" preload="none" disablePictureInPicture disableRemotePlayback poster="/media/hf_20260821_114821_a8ca298f-be2c-4613-a4dd-51b69e16bbde_poster.webp"></video>
     <div class="absolute inset-0 bg-[#06080a]/60 z-0 mix-blend-multiply"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-[#090b0d] z-0"></div>
 
@@ -782,7 +817,7 @@
   <!-- ═══════ SECTION 4: EXPERIENCE ═══════ -->
   <section id="experience" class="relative overflow-hidden bg-[#080A19] px-5 sm:px-8 md:px-12 py-32" style="z-index:11">
     <!-- Apogee Nebula Video Background -->
-    <video autoplay loop muted playsinline preload="none" class="absolute inset-0 w-full h-full object-cover z-0 lazy-video" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260813_092641_de52eb87-daf2-41db-92cb-7a56eae012a5.mp4"></video>
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 lazy-video" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260813_092641_de52eb87-daf2-41db-92cb-7a56eae012a5.mp4" preload="none" disablePictureInPicture disableRemotePlayback poster="/media/hf_20260813_092641_de52eb87-daf2-41db-92cb-7a56eae012a5_poster.webp"></video>
     <!-- Add gradient to fade into next/prev sections smoothly -->
     <div class="absolute inset-0 bg-gradient-to-b from-[#090b0d] via-transparent to-[#090b0d] z-0 pointer-events-none"></div>
 
@@ -795,7 +830,7 @@
       <div class="reveal glass-panel rounded-2xl p-6 sm:p-8 overflow-hidden" style="border-radius:20px;transition-delay:120ms">
         <div class="flex flex-col sm:flex-row gap-6">
           <div class="flex flex-col gap-4 sm:w-44 shrink-0">
-            <img src="/assets/ongc_logo.png" alt="ONGC" class="w-28 h-auto rounded-lg object-contain bg-white/5 p-1">
+            <img src="/assets/ongc_logo.png" alt="ONGC" loading="lazy" decoding="async" class="w-28 h-auto rounded-lg object-contain bg-white/5 p-1">
             <div>
               <span class="font-mono text-[10px] uppercase tracking-[.12em] text-white/45">Duration</span>
               <p class="text-white/75 text-sm mt-1">May 2024 – Jun 2024</p>
@@ -835,9 +870,9 @@
         <div>
           <h2 class="text-white text-3xl lg:text-[42px] leading-[1.22] font-normal mb-8 drop-shadow-xl">Skills built for<br>real-world scale.</h2>
           <div class="hidden lg:flex flex-col gap-2" id="skNavWrap">
-            <button class="sk-nav-btn active text-left px-4 py-3 rounded-xl text-sm font-medium" onclick="goToCard(0)">Languages &amp; Frameworks</button>
-            <button class="sk-nav-btn text-left px-4 py-3 rounded-xl text-sm font-medium" onclick="goToCard(1)">Data &amp; ML Stack</button>
-            <button class="sk-nav-btn text-left px-4 py-3 rounded-xl text-sm font-medium" onclick="goToCard(2)">Dev &amp; DevOps</button>
+            <button class="sk-nav-btn active text-left px-4 py-3 rounded-xl text-sm font-medium" data-skill-card="0">Languages &amp; Frameworks</button>
+            <button class="sk-nav-btn text-left px-4 py-3 rounded-xl text-sm font-medium" data-skill-card="1">Data &amp; ML Stack</button>
+            <button class="sk-nav-btn text-left px-4 py-3 rounded-xl text-sm font-medium" data-skill-card="2">Dev &amp; DevOps</button>
           </div>
         </div>
         <div class="hidden lg:block">
@@ -854,9 +889,7 @@
           </svg>
           <h3 class="text-white text-xl md:text-2xl font-bold mb-4">Languages &amp; Frameworks</h3>
           <div class="aspect-video rounded-2xl overflow-hidden bg-black/30 mb-6">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover">
-              <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260702_102608_5fa1187d-9ac6-44fb-82ab-54376200abc0.mp4" type="video/mp4">
-            </video>
+            <video autoplay muted loop playsinline class="w-full h-full object-cover" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260702_102608_5fa1187d-9ac6-44fb-82ab-54376200abc0.mp4" preload="none" disablePictureInPicture disableRemotePlayback poster="/media/hf_20260702_102608_5fa1187d-9ac6-44fb-82ab-54376200abc0_poster.webp"></video>
           </div>
           <p class="text-white/55 text-sm md:text-base leading-relaxed mb-6">Proficient in Python, C, C++, and Java for core systems. Production web apps with Django and Laravel; frontend with HTML, CSS, JavaScript, and Bootstrap.</p>
           <div class="flex flex-wrap gap-2.5">
@@ -878,9 +911,7 @@
           </svg>
           <h3 class="text-white text-xl md:text-2xl font-bold mb-4">Data &amp; ML Stack</h3>
           <div class="aspect-video rounded-2xl overflow-hidden bg-black/30 mb-6">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover">
-              <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260625_174131_395bc785-bb21-4e65-abf6-27c56f0764b6.mp4" type="video/mp4">
-            </video>
+            <video autoplay muted loop playsinline class="w-full h-full object-cover" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260625_174131_395bc785-bb21-4e65-abf6-27c56f0764b6.mp4" preload="none" disablePictureInPicture disableRemotePlayback poster="/media/hf_20260625_174131_395bc785-bb21-4e65-abf6-27c56f0764b6_poster.webp"></video>
           </div>
           <p class="text-white/55 text-sm md:text-base leading-relaxed mb-6">End-to-end ML pipelines with PyTorch, TensorFlow, and scikit-learn. Computer vision with OpenCV; NLP with SpaCy. Data analysis and visualization with Pandas, NumPy, and Seaborn.</p>
           <div class="flex flex-wrap gap-2.5">
@@ -902,9 +933,7 @@
           </svg>
           <h3 class="text-white text-xl md:text-2xl font-bold mb-4">Dev &amp; DevOps</h3>
           <div class="aspect-video rounded-2xl overflow-hidden bg-black/30 mb-6">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover">
-              <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260525_052706_d2e390fd-1846-4fe7-a4d8-8d2f1c875358.mp4" type="video/mp4">
-            </video>
+            <video autoplay muted loop playsinline class="w-full h-full object-cover" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260525_052706_d2e390fd-1846-4fe7-a4d8-8d2f1c875358.mp4" preload="none" disablePictureInPicture disableRemotePlayback poster="/media/hf_20260525_052706_d2e390fd-1846-4fe7-a4d8-8d2f1c875358_poster.webp"></video>
           </div>
           <p class="text-white/55 text-sm md:text-base leading-relaxed mb-6">Containerization with Docker, version control with Git/GitHub/GitLab. Databases: MySQL, PostgreSQL, MongoDB, SQLite, Oracle, Firebase. Linux-native workflow with VSCode and Jupyter.</p>
           <div class="flex flex-wrap gap-2.5">
@@ -927,7 +956,7 @@
   <!-- ═══════ SECTION 6: PROJECTS ═══════ -->
   <section id="projects" class="relative overflow-hidden bg-[#080A19] px-5 sm:px-8 md:px-12 py-24" style="z-index:11">
     <!-- Cinematic Video Background (Matched with Experience Section) -->
-    <video autoplay loop muted playsinline preload="none" class="absolute inset-0 w-full h-full object-cover z-0 lazy-video" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260813_092641_de52eb87-daf2-41db-92cb-7a56eae012a5.mp4"></video>
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 lazy-video" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260813_092641_de52eb87-daf2-41db-92cb-7a56eae012a5.mp4" preload="none" disablePictureInPicture disableRemotePlayback poster="/media/hf_20260813_092641_de52eb87-daf2-41db-92cb-7a56eae012a5_poster.webp"></video>
     <!-- Gradient overlay to fade smoothly and ensure contrast -->
     <div class="absolute inset-0 bg-gradient-to-b from-[#090b0d] via-transparent to-[#090b0d] z-0 pointer-events-none opacity-80"></div>
     <div class="max-w-6xl mx-auto relative z-10">
@@ -1311,7 +1340,7 @@
   <!-- ═══════ SECTION 7: CONTACT ═══════ -->
   <section id="contact" class="relative overflow-hidden px-5 sm:px-8 md:px-12 py-24" style="z-index:11">
     <!-- Cinematic Video Background (Centered) -->
-    <video autoplay loop muted playsinline preload="none" class="absolute inset-0 w-full h-full object-cover z-0 lazy-video" style="object-position: center center;" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa.mp4"></video>
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 lazy-video" style="object-position: center center;" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa.mp4" preload="none" disablePictureInPicture disableRemotePlayback poster="/media/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa_poster.webp"></video>
     <div class="max-w-6xl mx-auto relative z-10">
       <div class="reveal mb-12">
         <div class="badge-lb rounded-sm inline-flex mb-4"><span class="font-mono text-[10px] uppercase tracking-[.15em] text-white">Get In Touch</span></div>
@@ -1342,483 +1371,19 @@
     </div>
   </section>
 
+  </main>
+
   <!-- FOOTER -->
   <footer class="relative bg-[#090b0d] border-t border-white/[.08] py-8 px-5 sm:px-8 md:px-12" style="z-index:11">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-      <span class="text-white/35 text-xs font-mono uppercase tracking-[.10em]">© <script>document.write(new Date().getFullYear())</script> Yash Chaudhari. All rights reserved.</span>
+      <span class="text-white/35 text-xs font-mono uppercase tracking-[.10em]">© <span id="current-year">2026</span> Yash Chaudhari. All rights reserved.</span>
       <a href="#home" class="text-white/35 text-xs font-mono uppercase tracking-[.10em] hover:text-white/60 transition-colors duration-300">Back to top ↑</a>
     </div>
   </footer>
 
-  <script>
-  /* 1. Typed.js */
-  new Typed('#heroTyped', {
-    strings: ['ML Engineer','Full-Stack Dev','Data Scientist','AI Builder','Django Dev'],
-    typeSpeed:58, backSpeed:28, backDelay:1900, loop:true,
-  });
+  <script type="module" src="/script/page.mjs"></script>
 
-  /* 2. Scroll progress bar */
-  const pf = document.getElementById('pbar-fill');
-  window.addEventListener('scroll', () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    pf.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
-  }, { passive:true });
 
-  /* 3. Mobile menu */
-  const ham = document.getElementById('ham');
-  const mm  = document.getElementById('mobile-menu');
-  const b1  = document.getElementById('b1');
-  const b2  = document.getElementById('b2');
-  let mOpen = false;
-  function toggleMenu(v) {
-    mOpen = v !== undefined ? v : !mOpen;
-    mm.classList.toggle('open', mOpen);
-    b1.style.transform = mOpen ? 'translateY(3.5px) rotate(45deg)' : '';
-    b2.style.transform = mOpen ? 'translateY(-3.5px) rotate(-45deg)' : '';
-    document.body.style.overflow = mOpen ? 'hidden' : '';
-  }
-  ham.addEventListener('click', () => toggleMenu());
-  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
-
-  /* 4. Reveal on scroll */
-  const ro = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); }), { threshold:0.13 });
-  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
-
-  /* 5. Reveal-X (skill cards) */
-  const rx = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); rx.unobserve(e.target); } }), { threshold:0.13 });
-  document.querySelectorAll('.reveal-x').forEach(el => rx.observe(el));
-
-  /* 6. Active skill nav */
-  const skBtns = document.querySelectorAll('.sk-nav-btn');
-  const sa = new IntersectionObserver(es => es.forEach(e => {
-    if(e.isIntersecting){ const i=parseInt(e.target.dataset.ski); skBtns.forEach((b,j)=>b.classList.toggle('active',j===i)); }
-  }), { threshold:0.55 });
-  document.querySelectorAll('[data-ski]').forEach(el => sa.observe(el));
-  function goToCard(i){ const c=document.getElementById('skCard'+i); if(c) c.scrollIntoView({behavior:'smooth',block:'center'}); }
-
-  /* 7. Smooth anchor scroll */
-  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
-    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
-  }));
-
-  /* 8. Intro screen cleanup & Avatar Auto-Expand */
-  setTimeout(() => {
-    const intro = document.getElementById('intro-screen');
-    if(intro){ intro.style.pointerEvents='none'; intro.style.visibility='hidden'; }
-    
-    const avatarCard = document.getElementById('avatar-card');
-    if(avatarCard){
-      avatarCard.classList.add('auto-expand');
-      setTimeout(() => {
-        avatarCard.classList.remove('auto-expand');
-      }, 5000);
-    }
-  }, 3600);
-
-  /* 9. Scroll-Scrubbed Video — NovaAI frame-cache pipeline */
-  const VIDEO_SRC = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260729_102822_0e6c87e8-c141-4744-bf32-ad30db296371.mp4';
-  const vPoster  = document.getElementById('vPoster');
-  const vEl      = document.getElementById('vEl');
-  const vCanvas  = document.getElementById('vCanvas');
-  const vCtx     = vCanvas.getContext('2d');
-  const DPR      = Math.min(window.devicePixelRatio || 1, 2);
-  let frames = [], framesReady = false, smoothP = 0, targetP = 0, lastSeek = -1;
-  function getP(){ const m=document.documentElement.scrollHeight-window.innerHeight; return m>0?Math.max(0,Math.min(1,window.scrollY/m)):0; }
-  function coverDraw(img,cw,ch){
-    const iw=img.width||img.videoWidth||cw, ih=img.height||img.videoHeight||ch;
-    const sc=Math.max(cw/iw,ch/ih);
-    vCtx.drawImage(img,(cw-iw*sc)/2,(ch-ih*sc)/2,iw*sc,ih*sc);
-  }
-  function resizeCanvas(){
-    vCanvas.width=window.innerWidth*DPR; vCanvas.height=window.innerHeight*DPR;
-    vCanvas.style.width=window.innerWidth+'px'; vCanvas.style.height=window.innerHeight+'px';
-  }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas, {passive:true});
-  (function raf(){
-    requestAnimationFrame(raf);
-    targetP = getP();
-    smoothP += (targetP - smoothP) * 0.08;
-    if(framesReady && frames.length>0){
-      const idx = Math.min(Math.floor(smoothP*(frames.length-1)), frames.length-1);
-      vCtx.clearRect(0,0,vCanvas.width,vCanvas.height);
-      coverDraw(frames[idx], vCanvas.width, vCanvas.height);
-    } else if(vEl.readyState>=2 && vEl.duration){
-      const st = smoothP*(vEl.duration-0.05);
-      if(Math.abs(st-lastSeek)>0.04){ vEl.currentTime=st; lastSeek=st; }
-    }
-  })();
-  vEl.addEventListener('loadeddata', () => {
-    vEl.style.opacity='1'; vPoster.style.opacity='0';
-    setTimeout(extractFrames, 300);
-  });
-  async function extractFrames(){
-    const dur = vEl.duration;
-    if(!dur || isNaN(dur)) return;
-    // Fix rendering/glitching on low-end devices: scale down aggressively on mobile
-    const isMobile = window.innerWidth <= 768;
-    const maxFrames = isMobile ? 80 : 140;
-    const count = Math.min(Math.max(Math.floor(dur*(isMobile?12:18)), 48), maxFrames);
-    const off = document.createElement('video');
-    off.src=VIDEO_SRC; off.muted=true; off.playsInline=true; off.preload='auto'; off.crossOrigin='anonymous';
-    await new Promise(res=>{ off.addEventListener('loadeddata',res,{once:true}); off.load(); });
-    const vw=off.videoWidth||1920, vh=off.videoHeight||1080;
-    
-    // Use 640px max width for mobile to save memory and prevent crashes, 960px for desktop
-    const maxWidth = isMobile ? 640 : 960;
-    const sc=Math.min(1, maxWidth/vw);
-    const fw=Math.round(vw*sc), fh=Math.round(vh*sc);
-    let oc;
-    try{ oc=new OffscreenCanvas(fw,fh); } catch(_){ oc=document.createElement('canvas'); oc.width=fw; oc.height=fh; }
-    const oc_ctx=oc.getContext('2d');
-    const extracted=[];
-    for(let i=0;i<count;i++){
-      const t=(i/(count-1))*(dur-0.05);
-      off.currentTime=t;
-      await new Promise(res=>off.addEventListener('seeked',res,{once:true}));
-      oc_ctx.drawImage(off,0,0,fw,fh);
-      try{ extracted.push(await createImageBitmap(oc)); }
-      catch(_){ const s=document.createElement('canvas'); s.width=fw; s.height=fh; s.getContext('2d').drawImage(off,0,0,fw,fh); extracted.push(s); }
-    }
-    frames=extracted; framesReady=true;
-    vEl.style.opacity='0'; vCanvas.style.opacity='1';
-  }
-
-  /* ═══════════════════════════════════════════════════
-     10. FLOATING PARTICLE SYSTEM
-  ═══════════════════════════════════════════════════ */
-  (function initParticles(){
-    const pc = document.getElementById('particle-canvas');
-    if(!pc) return;
-    const pCtx = pc.getContext('2d');
-    let W, H, particles=[];
-    function resize(){ W=pc.width=window.innerWidth; H=pc.height=window.innerHeight; }
-    resize();
-    window.addEventListener('resize',resize,{passive:true});
-    for(let i=0;i<55;i++){
-      particles.push({
-        x: Math.random()*window.innerWidth,
-        y: Math.random()*window.innerHeight,
-        r: Math.random()*1.8+0.4,
-        dx:(Math.random()-0.5)*0.25,
-        dy:(Math.random()-0.5)*0.25,
-        a: Math.random()*0.5+0.15,
-        col: Math.random()>0.65 ? '#38dd76' : Math.random()>0.5 ? '#38bdf8' : '#fff'
-      });
-    }
-    function drawParticles(){
-      requestAnimationFrame(drawParticles);
-      if (pc.dataset.inView === 'false') return; // Save CPU/Battery when offscreen
-      pCtx.clearRect(0,0,W,H);
-      particles.forEach(p=>{
-        p.x+=p.dx; p.y+=p.dy;
-        if(p.x<0)p.x=W; if(p.x>W)p.x=0;
-        if(p.y<0)p.y=H; if(p.y>H)p.y=0;
-        pCtx.beginPath();
-        pCtx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        pCtx.fillStyle=p.col;
-        pCtx.globalAlpha=p.a;
-        pCtx.fill();
-        pCtx.globalAlpha=1;
-      });
-      // Draw connecting lines
-      for(let i=0;i<particles.length;i++){
-        for(let j=i+1;j<particles.length;j++){
-          const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
-          const dist=Math.sqrt(dx*dx+dy*dy);
-          if(dist<120){
-            pCtx.beginPath();
-            pCtx.moveTo(particles[i].x,particles[i].y);
-            pCtx.lineTo(particles[j].x,particles[j].y);
-            pCtx.strokeStyle='rgba(56,221,118,0.08)';
-            pCtx.lineWidth=0.6;
-            pCtx.globalAlpha=(1-dist/120)*0.35;
-            pCtx.stroke();
-            pCtx.globalAlpha=1;
-          }
-        }
-      }
-    }
-    drawParticles();
-  })();
-
-  /* ═══════════════════════════════════════════════════
-     11. PROJECT CANVAS ANIMATIONS
-  ═══════════════════════════════════════════════════ */
-
-  /* — Project 1: IntelliFace — Face Recognition Scan — */
-  (function animFace(){
-    const c=document.getElementById('anim-face'); if(!c)return;
-    c.width=c.offsetWidth||500; c.height=176;
-    const ctx=c.getContext('2d');
-    let t=0;
-    const DOTS=[];
-    // Generate face dot grid
-    for(let r=0;r<9;r++) for(let col=0;col<14;col++){
-      DOTS.push({x:60+col*28,y:20+r*16,lit:false,delay:Math.random()*120});
-    }
-    // Bounding box
-    const BOX={x:180,y:18,w:140,h:138};
-    function draw(){
-      requestAnimationFrame(draw); t++;
-      if (c.dataset.inView === 'false') return; // Save CPU/Battery
-      ctx.clearRect(0,0,c.width,c.height);
-      // Dark bg gradient
-      const g=ctx.createLinearGradient(0,0,c.width,c.height);
-      g.addColorStop(0,'#050709'); g.addColorStop(1,'#0a1a10');
-      ctx.fillStyle=g; ctx.fillRect(0,0,c.width,c.height);
-      // Grid dots
-      DOTS.forEach(d=>{
-        const inBox=d.x>BOX.x&&d.x<BOX.x+BOX.w&&d.y>BOX.y&&d.y<BOX.y+BOX.h;
-        d.lit = inBox && t>d.delay;
-        ctx.beginPath(); ctx.arc(d.x,d.y,d.lit?2.2:1.2,0,Math.PI*2);
-        ctx.fillStyle=d.lit?`rgba(56,221,118,${0.6+0.4*Math.sin(t*0.05+d.delay)})`:'rgba(255,255,255,0.08)';
-        ctx.fill();
-      });
-      // Scan line
-      const scanY=BOX.y+(((t*1.2)%(BOX.h+20))-10);
-      const sg=ctx.createLinearGradient(0,scanY-14,0,scanY+14);
-      sg.addColorStop(0,'transparent'); sg.addColorStop(0.5,'rgba(56,221,118,0.6)'); sg.addColorStop(1,'transparent');
-      ctx.fillStyle=sg; ctx.fillRect(BOX.x-4,scanY-14,BOX.w+8,28);
-      // Bounding box corners
-      const cl=BOX.x,ct=BOX.y,cr=BOX.x+BOX.w,cb=BOX.y+BOX.h,cs=18;
-      ctx.strokeStyle='#38dd76'; ctx.lineWidth=2; ctx.lineCap='round';
-      [[cl,ct,cl+cs,ct],[cl,ct,cl,ct+cs],[cr,ct,cr-cs,ct],[cr,ct,cr,ct+cs],
-       [cl,cb,cl+cs,cb],[cl,cb,cl,cb-cs],[cr,cb,cr-cs,cb],[cr,cb,cr,cb-cs]].forEach(([x1,y1,x2,y2])=>{
-        ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
-      });
-      // Label
-      ctx.font='bold 10px Inter,sans-serif'; ctx.fillStyle='#38dd76';
-      ctx.fillText('FACE_ID · ' + (t>60?'MATCH ✓':'SCANNING...'), BOX.x, BOX.y-6);
-      // Probability bar
-      const pct=Math.min(1,(t-60)/80); if(t>60){
-        ctx.fillStyle='rgba(56,221,118,0.15)'; ctx.fillRect(c.width-90,40,70,10);
-        ctx.fillStyle='#38dd76'; ctx.fillRect(c.width-90,40,70*pct,10);
-        ctx.font='9px Inter,sans-serif'; ctx.fillStyle='#38dd76';
-        ctx.fillText((pct*100).toFixed(0)+'%',c.width-90,35);
-      }
-    }
-    draw();
-  })();
-
-  /* — Project 2: Capstone Data Science — Animated Chart — */
-  (function animData(){
-    const c=document.getElementById('anim-data'); if(!c)return;
-    c.width=c.offsetWidth||500; c.height=176;
-    const ctx=c.getContext('2d');
-    let t=0;
-    const bars=[0.4,0.65,0.5,0.82,0.7,0.91,0.78,0.95,0.88,1.0];
-    const LINE=[0.3,0.45,0.38,0.6,0.72,0.65,0.83,0.78,0.9,1.0];
-    function draw(){
-      requestAnimationFrame(draw); t++;
-      if (c.dataset.inView === 'false') return; // Save CPU/Battery
-      ctx.clearRect(0,0,c.width,c.height);
-      const g=ctx.createLinearGradient(0,0,0,c.height);
-      g.addColorStop(0,'#050a12'); g.addColorStop(1,'#08050f');
-      ctx.fillStyle=g; ctx.fillRect(0,0,c.width,c.height);
-      // Grid
-      ctx.strokeStyle='rgba(255,255,255,0.05)'; ctx.lineWidth=1;
-      for(let i=1;i<5;i++){ ctx.beginPath(); ctx.moveTo(32,20+i*28); ctx.lineTo(c.width-20,20+i*28); ctx.stroke(); }
-      // Bars
-      const bw=22, gap=12, maxH=112, baseY=148, prog=Math.min(1,t/80);
-      bars.forEach((v,i)=>{
-        const bx=36+i*(bw+gap), bh=v*maxH*prog;
-        const bg=ctx.createLinearGradient(0,baseY-bh,0,baseY);
-        bg.addColorStop(0,'rgba(56,221,118,0.9)'); bg.addColorStop(1,'rgba(56,221,118,0.2)');
-        ctx.fillStyle=bg;
-        ctx.beginPath(); ctx.roundRect(bx,baseY-bh,bw,bh,3); ctx.fill();
-      });
-      // Line chart
-      if(t>40){
-        const lp=Math.min(1,(t-40)/60);
-        ctx.beginPath(); ctx.strokeStyle='#38bdf8'; ctx.lineWidth=2;
-        LINE.slice(0,Math.ceil(LINE.length*lp)).forEach((v,i)=>{
-          const lx=36+i*(bw+gap)+bw/2, ly=baseY-v*maxH;
-          i===0?ctx.moveTo(lx,ly):ctx.lineTo(lx,ly);
-        });
-        ctx.stroke();
-        // Dots
-        LINE.slice(0,Math.ceil(LINE.length*lp)).forEach((v,i)=>{
-          ctx.beginPath(); ctx.arc(36+i*(bw+gap)+bw/2,baseY-v*maxH,3,0,Math.PI*2);
-          ctx.fillStyle='#38bdf8'; ctx.fill();
-        });
-      }
-      // Labels
-      ctx.font='bold 9px Inter,sans-serif'; ctx.fillStyle='rgba(255,255,255,0.35)';
-      ctx.fillText('ACCURACY: '+((prog)*100).toFixed(0)+'%',36,14);
-      ctx.fillStyle='#38dd76'; ctx.fillText('MODEL PERFORMANCE',c.width-130,14);
-    }
-    draw();
-  })();
-
-  /* — Project 3: NBSpamDetect — Email Filter Animation — */
-  (function animSpam(){
-    const c=document.getElementById('anim-spam'); if(!c)return;
-    c.width=c.offsetWidth||500; c.height=176;
-    const ctx=c.getContext('2d');
-    let t=0;
-    const emails=[];
-    function spawnEmail(){
-      emails.push({x:Math.random()*c.width,y:-20,vy:1.2+Math.random()*0.8,
-        isSpam:Math.random()>0.4,
-        classified:false,classAt:0,alpha:1});
-    }
-    for(let i=0;i<6;i++) spawnEmail();
-    function drawEnvelope(x,y,spam,classified,alpha){
-      ctx.save(); ctx.globalAlpha=alpha;
-      ctx.fillStyle=classified?(spam?'rgba(239,68,68,0.3)':'rgba(56,221,118,0.3)'):'rgba(255,255,255,0.08)';
-      ctx.strokeStyle=classified?(spam?'#ef4444':'#38dd76'):'rgba(255,255,255,0.2)';
-      ctx.lineWidth=1.2;
-      ctx.beginPath(); ctx.roundRect(x-18,y-12,36,24,3); ctx.fill(); ctx.stroke();
-      // Envelope flap
-      ctx.beginPath(); ctx.moveTo(x-18,y-12); ctx.lineTo(x,y+2); ctx.lineTo(x+18,y-12);
-      ctx.strokeStyle=classified?(spam?'rgba(239,68,68,0.6)':'rgba(56,221,118,0.6)'):'rgba(255,255,255,0.12)';
-      ctx.stroke();
-      if(classified){
-        ctx.font='bold 7px Inter,sans-serif';
-        ctx.fillStyle=spam?'#ef4444':'#38dd76';
-        ctx.textAlign='center';
-        ctx.fillText(spam?'SPAM':'HAM',x,y+5);
-      }
-      ctx.restore();
-    }
-    // Filter gate
-    const gateY=100;
-    function draw(){
-      requestAnimationFrame(draw); t++;
-      if (c.dataset.inView === 'false') return; // Save CPU/Battery
-      ctx.clearRect(0,0,c.width,c.height);
-      const g=ctx.createLinearGradient(0,0,0,c.height);
-      g.addColorStop(0,'#0a0505'); g.addColorStop(1,'#050a08');
-      ctx.fillStyle=g; ctx.fillRect(0,0,c.width,c.height);
-      // Filter gate line
-      const gateGrad=ctx.createLinearGradient(0,0,c.width,0);
-      gateGrad.addColorStop(0,'transparent'); gateGrad.addColorStop(0.5,'rgba(56,221,118,0.4)'); gateGrad.addColorStop(1,'transparent');
-      ctx.fillStyle=gateGrad; ctx.fillRect(0,gateY-1,c.width,2);
-      ctx.font='bold 9px Inter,sans-serif'; ctx.fillStyle='rgba(56,221,118,0.6)'; ctx.textAlign='right';
-      ctx.fillText('NAIVE BAYES FILTER',c.width-14,gateY-6);
-      // Emails
-      emails.forEach(e=>{
-        e.y+=e.vy;
-        if(!e.classified && e.y>gateY){ e.classified=true; e.classAt=t; }
-        if(e.classified) e.alpha=Math.max(0,1-(t-e.classAt)/40);
-        drawEnvelope(e.x,e.y,e.isSpam,e.classified,e.alpha);
-      });
-      // Clean up + spawn
-      for(let i=emails.length-1;i>=0;i--) if(emails[i].y>c.height+30||emails[i].alpha<=0) emails.splice(i,1);
-      if(t%55===0) spawnEmail();
-      // Stats
-      const spam=emails.filter(e=>e.isSpam&&e.classified).length;
-      const ham=emails.filter(e=>!e.isSpam&&e.classified).length;
-      ctx.font='bold 9px Inter,sans-serif'; ctx.textAlign='left';
-      ctx.fillStyle='#ef4444'; ctx.fillText('SPAM: '+spam, 14,20);
-      ctx.fillStyle='#38dd76'; ctx.fillText('HAM: '+ham, 14,34);
-    }
-    draw();
-  })();
-
-  /* — Project 4: Digit Recognition — MNIST Pixel Draw — */
-  (function animDigit(){
-    const c=document.getElementById('anim-digit'); if(!c)return;
-    c.width=c.offsetWidth||500; c.height=176;
-    const ctx=c.getContext('2d');
-    const DIGITS=[
-      [[0,1,1,1,0],[1,0,0,0,1],[1,0,0,0,1],[1,0,0,0,1],[0,1,1,1,0]],
-      [[0,0,1,0,0],[0,1,1,0,0],[0,0,1,0,0],[0,0,1,0,0],[0,1,1,1,0]],
-      [[0,1,1,1,0],[1,0,0,0,1],[0,0,1,1,0],[0,1,0,0,0],[1,1,1,1,1]],
-      [[1,1,1,1,0],[0,0,0,0,1],[0,0,1,1,0],[0,0,0,0,1],[1,1,1,1,0]],
-      [[1,0,0,1,0],[1,0,0,1,0],[1,1,1,1,1],[0,0,0,1,0],[0,0,0,1,0]],
-      [[1,1,1,1,1],[1,0,0,0,0],[1,1,1,1,0],[0,0,0,0,1],[1,1,1,1,0]],
-      [[0,1,1,1,0],[1,0,0,0,0],[1,1,1,1,0],[1,0,0,0,1],[0,1,1,1,0]],
-      [[1,1,1,1,1],[0,0,0,1,0],[0,0,1,0,0],[0,1,0,0,0],[1,0,0,0,0]],
-      [[0,1,1,1,0],[1,0,0,0,1],[0,1,1,1,0],[1,0,0,0,1],[0,1,1,1,0]],
-      [[0,1,1,1,0],[1,0,0,0,1],[0,1,1,1,1],[0,0,0,0,1],[0,1,1,1,0]],
-    ];
-    let t=0, curDigit=0, nextAt=120, revealProgress=0, confScore=0;
-    const CX=c.width/2-80, CY=c.height/2-36, PS=24, gap=3;
-    function draw(){
-      requestAnimationFrame(draw); t++;
-      if (c.dataset.inView === 'false') return; // Save CPU/Battery
-      ctx.clearRect(0,0,c.width,c.height);
-      const g=ctx.createLinearGradient(0,0,c.width,c.height);
-      g.addColorStop(0,'#060610'); g.addColorStop(1,'#0a0614');
-      ctx.fillStyle=g; ctx.fillRect(0,0,c.width,c.height);
-      if(t>=nextAt){ t=0; curDigit=(curDigit+1)%10; nextAt=120; revealProgress=0; confScore=0; }
-      revealProgress=Math.min(25,revealProgress+0.35);
-      confScore=Math.min(1,confScore+(revealProgress>20?0.04:0));
-      // Draw pixel grid
-      const grid=DIGITS[curDigit];
-      let pixCount=0;
-      grid.forEach((row,r)=>{
-        row.forEach((cell,col)=>{
-          if(!cell){ return; }
-          pixCount++;
-          const revealed=pixCount<=Math.floor(revealProgress*2);
-          const px=CX+col*(PS+gap), py=CY+r*(PS+gap);
-          const bright=revealed?1:0.06;
-          const alpha=revealed?(0.7+0.3*Math.sin(t*0.08+pixCount*0.4)):0.08;
-          ctx.beginPath(); ctx.roundRect(px,py,PS,PS,4);
-          ctx.fillStyle=revealed?`rgba(56,221,118,${alpha})`:`rgba(255,255,255,${bright*0.05})`;
-          ctx.fill();
-          if(revealed){
-            const gg=ctx.createRadialGradient(px+PS/2,py+PS/2,0,px+PS/2,py+PS/2,PS);
-            gg.addColorStop(0,'rgba(56,221,118,0.25)'); gg.addColorStop(1,'transparent');
-            ctx.fillStyle=gg; ctx.fill();
-          }
-        });
-      });
-      // Label
-      ctx.font='bold 36px Inter,sans-serif';
-      ctx.fillStyle=`rgba(255,255,255,${confScore*0.8})`;
-      ctx.textAlign='center';
-      ctx.fillText(curDigit, CX+5*(PS+gap)+40, CY+4*(PS+gap)+14);
-      // Confidence bar
-      ctx.font='9px Inter,sans-serif'; ctx.fillStyle='rgba(255,255,255,0.35)'; ctx.textAlign='left';
-      ctx.fillText('CONFIDENCE',CX+5*(PS+gap)+20,CY+4*(PS+gap)+32);
-      ctx.fillStyle='rgba(56,221,118,0.18)'; ctx.fillRect(CX+5*(PS+gap)+20,CY+4*(PS+gap)+36,80,6);
-      ctx.fillStyle='#38dd76'; ctx.fillRect(CX+5*(PS+gap)+20,CY+4*(PS+gap)+36,80*confScore,6);
-      // SVM label
-      ctx.font='bold 9px Inter,sans-serif'; ctx.fillStyle='rgba(56,221,118,0.55)'; ctx.textAlign='right';
-      ctx.fillText('SVM · MNIST',c.width-14,14);
-    }
-    draw();
-  })();
-
-  </script>
-
-  <!-- Lazy Video Loader: only load background videos when section is near viewport -->
-  <script>
-  (function(){
-    const lazyVideos = document.querySelectorAll('video.lazy-video');
-    if (!lazyVideos.length) return;
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          const video = entry.target;
-          if (video.dataset.src && !video.src) {
-            video.src = video.dataset.src;
-            video.load();
-            video.play().catch(function(){}); // Ensure autoplay triggers on mobile
-          }
-          observer.unobserve(video);
-        }
-      });
-    }, { rootMargin: '200px 0px' });
-    lazyVideos.forEach(function(v) { observer.observe(v); });
-
-    // Pause canvas animations when off-screen to save CPU and battery
-    const canvasObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        entry.target.dataset.inView = entry.isIntersecting;
-      });
-    }, { rootMargin: '100px 0px' });
-    document.querySelectorAll('.proj-anim, #particle-canvas').forEach(function(c) {
-      c.dataset.inView = 'false';
-      canvasObserver.observe(c);
-    });
-  })();
-  </script>
 
 </body>
 </html>
