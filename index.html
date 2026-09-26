@@ -21,6 +21,9 @@
 
   <!-- No-JS fallback: make content visible if JavaScript is disabled -->
   <noscript><style>.reveal,.reveal-x{opacity:1!important;transform:none!important;}</style></noscript>
+  <!-- Canonical Link for SEO -->
+  <link rel="canonical" href="https://yashchaudhari29.github.io/">
+  
   <title>Yash Chaudhari — AI Engineer</title>
 
   <!-- Google Fonts: Instrument Serif + Inter -->
@@ -1070,7 +1073,7 @@
             </div>
             <div class="flex items-center justify-between">
               <span class="text-[#38dd76] text-[10px] font-mono uppercase tracking-[.09em]">automation</span>
-              <a href="http://gpsync.online/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-white/55 hover:text-white transition-colors duration-300 text-xs">Live <i class="bi bi-box-arrow-up-right text-[10px]"></i></a>
+              <a href="https://gpsync.vercel.app/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-white/55 hover:text-white transition-colors duration-300 text-xs">Live <i class="bi bi-box-arrow-up-right text-[10px]"></i></a>
             </div>
           </div>
         </div>
@@ -1453,12 +1456,18 @@
   async function extractFrames(){
     const dur = vEl.duration;
     if(!dur || isNaN(dur)) return;
-    const count = Math.min(Math.max(Math.floor(dur*18),48),140);
+    // Fix rendering/glitching on low-end devices: scale down aggressively on mobile
+    const isMobile = window.innerWidth <= 768;
+    const maxFrames = isMobile ? 80 : 140;
+    const count = Math.min(Math.max(Math.floor(dur*(isMobile?12:18)), 48), maxFrames);
     const off = document.createElement('video');
     off.src=VIDEO_SRC; off.muted=true; off.playsInline=true; off.preload='auto'; off.crossOrigin='anonymous';
     await new Promise(res=>{ off.addEventListener('loadeddata',res,{once:true}); off.load(); });
     const vw=off.videoWidth||1920, vh=off.videoHeight||1080;
-    const sc=Math.min(1,960/vw);
+    
+    // Use 640px max width for mobile to save memory and prevent crashes, 960px for desktop
+    const maxWidth = isMobile ? 640 : 960;
+    const sc=Math.min(1, maxWidth/vw);
     const fw=Math.round(vw*sc), fh=Math.round(vh*sc);
     let oc;
     try{ oc=new OffscreenCanvas(fw,fh); } catch(_){ oc=document.createElement('canvas'); oc.width=fw; oc.height=fh; }
@@ -1500,6 +1509,7 @@
     }
     function drawParticles(){
       requestAnimationFrame(drawParticles);
+      if (pc.dataset.inView === 'false') return; // Save CPU/Battery when offscreen
       pCtx.clearRect(0,0,W,H);
       particles.forEach(p=>{
         p.x+=p.dx; p.y+=p.dy;
@@ -1552,6 +1562,7 @@
     const BOX={x:180,y:18,w:140,h:138};
     function draw(){
       requestAnimationFrame(draw); t++;
+      if (c.dataset.inView === 'false') return; // Save CPU/Battery
       ctx.clearRect(0,0,c.width,c.height);
       // Dark bg gradient
       const g=ctx.createLinearGradient(0,0,c.width,c.height);
@@ -1601,6 +1612,7 @@
     const LINE=[0.3,0.45,0.38,0.6,0.72,0.65,0.83,0.78,0.9,1.0];
     function draw(){
       requestAnimationFrame(draw); t++;
+      if (c.dataset.inView === 'false') return; // Save CPU/Battery
       ctx.clearRect(0,0,c.width,c.height);
       const g=ctx.createLinearGradient(0,0,0,c.height);
       g.addColorStop(0,'#050a12'); g.addColorStop(1,'#08050f');
@@ -1675,6 +1687,7 @@
     const gateY=100;
     function draw(){
       requestAnimationFrame(draw); t++;
+      if (c.dataset.inView === 'false') return; // Save CPU/Battery
       ctx.clearRect(0,0,c.width,c.height);
       const g=ctx.createLinearGradient(0,0,0,c.height);
       g.addColorStop(0,'#0a0505'); g.addColorStop(1,'#050a08');
@@ -1726,6 +1739,7 @@
     const CX=c.width/2-80, CY=c.height/2-36, PS=24, gap=3;
     function draw(){
       requestAnimationFrame(draw); t++;
+      if (c.dataset.inView === 'false') return; // Save CPU/Battery
       ctx.clearRect(0,0,c.width,c.height);
       const g=ctx.createLinearGradient(0,0,c.width,c.height);
       g.addColorStop(0,'#060610'); g.addColorStop(1,'#0a0614');
@@ -1785,12 +1799,24 @@
           if (video.dataset.src && !video.src) {
             video.src = video.dataset.src;
             video.load();
+            video.play().catch(function(){}); // Ensure autoplay triggers on mobile
           }
           observer.unobserve(video);
         }
       });
     }, { rootMargin: '200px 0px' });
     lazyVideos.forEach(function(v) { observer.observe(v); });
+
+    // Pause canvas animations when off-screen to save CPU and battery
+    const canvasObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        entry.target.dataset.inView = entry.isIntersecting;
+      });
+    }, { rootMargin: '100px 0px' });
+    document.querySelectorAll('.proj-anim, #particle-canvas').forEach(function(c) {
+      c.dataset.inView = 'false';
+      canvasObserver.observe(c);
+    });
   })();
   </script>
 
