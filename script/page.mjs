@@ -1,9 +1,10 @@
+import { profile } from './device-profile.mjs';
 import { driver, sizeProjectCanvas } from './animation-driver.mjs';
   import { initMedia } from './media-runtime.mjs';
   initMedia();
   document.getElementById('current-year').textContent = new Date().getFullYear();
   document.querySelectorAll('[data-skill-card]').forEach(button => button.addEventListener('click', () => {
-    document.getElementById('skCard' + button.dataset.skillCard)?.scrollIntoView({behavior:'smooth', block:'center'});
+    document.getElementById('skCard' + button.dataset.skillCard)?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth', block:'center'});
   }));
   /* 1. Typed.js */
   if (window.Typed) new Typed('#heroTyped', {
@@ -27,11 +28,15 @@ import { driver, sizeProjectCanvas } from './animation-driver.mjs';
   function toggleMenu(v) {
     mOpen = v !== undefined ? v : !mOpen;
     mm.classList.toggle('open', mOpen);
+    mm.inert = !mOpen;
+    mm.setAttribute('aria-hidden', String(!mOpen));
+    ham.setAttribute('aria-expanded', String(mOpen));
     b1.style.transform = mOpen ? 'translateY(3.5px) rotate(45deg)' : '';
     b2.style.transform = mOpen ? 'translateY(-3.5px) rotate(-45deg)' : '';
     document.body.style.overflow = mOpen ? 'hidden' : '';
   }
   ham.addEventListener('click', () => toggleMenu());
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && mOpen) { toggleMenu(false); ham.focus(); } });
   mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
 
   /* 4. Reveal on scroll */
@@ -52,7 +57,7 @@ import { driver, sizeProjectCanvas } from './animation-driver.mjs';
   /* 7. Smooth anchor scroll */
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const t = document.querySelector(a.getAttribute('href'));
-    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); }
   }));
 
   /* 8. Intro screen cleanup & Avatar Auto-Expand */
@@ -67,7 +72,7 @@ import { driver, sizeProjectCanvas } from './animation-driver.mjs';
         avatarCard.classList.remove('auto-expand');
       }, 5000);
     }
-  }, 3600);
+  }, profile.posterOnly ? 0 : 3600);
 
   /* Canvas callbacks share one visibility-aware driver. */
   /* — Project 1: IntelliFace — Face Recognition Scan — */
@@ -304,3 +309,24 @@ import { driver, sizeProjectCanvas } from './animation-driver.mjs';
     }
     driver.register(c, draw);
   })();
+
+// Float independently of the contact layout, with clearance above the footer.
+(() => {
+  const button = document.querySelector('.contact-to-top');
+  const contact = document.querySelector('#contact');
+  const footer = document.querySelector('.portfolio-footer');
+  if (!button || !contact || !footer) return;
+  const place = () => {
+    const area = contact.getBoundingClientRect();
+    const visible = area.top < innerHeight - 80 && area.bottom > 100;
+    button.hidden = !visible;
+    if (visible) {
+      const clearance = Math.max(28, innerHeight - footer.getBoundingClientRect().top + 20);
+      button.style.setProperty('--top-button-bottom', clearance + 'px');
+    }
+  };
+  window.addEventListener('scroll', place, { passive: true });
+  window.addEventListener('resize', place, { passive: true });
+  new ResizeObserver(place).observe(footer);
+  place();
+})();

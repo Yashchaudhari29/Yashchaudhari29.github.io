@@ -5,7 +5,7 @@ export class VideoManager {
     this.videos = [...videos]; this.manifest = manifest; this.zone = new Set(); this.active = new Set();
     this.profile = deviceProfile; this.fallback = new WeakSet();
     this.suspended = document.hidden; this.maxObserved = 0;
-    this.limit = Math.min(MEDIA_CONFIG.videoConcurrencyLimit, this.profile.videoConcurrencyLimit);
+    this.limit = this.profile.posterOnly ? 0 : Math.min(MEDIA_CONFIG.videoConcurrencyLimit, this.profile.videoConcurrencyLimit);
     this.observer = new IntersectionObserver(entries => {
       for (const entry of entries) entry.isIntersecting ? this.zone.add(entry.target) : this.zone.delete(entry.target);
       this.reconcile();

@@ -46,6 +46,11 @@
   <script src="/script/vendor/typed-2.1.0.umd.js" defer></script>
 
   <style>
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto !important; }
+      #intro-screen { display: none !important; }
+      .reveal, .reveal-x { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
     :root {
       --accent: #38dd76;
       --ease: cubic-bezier(0.22,1,0.36,1);
@@ -486,6 +491,8 @@
   </style>
   <!-- Preserve the original CDN-injected utility cascade after custom styles. -->
   <link rel="stylesheet" href="/css/tailwind.css">
+  <link rel="stylesheet" href="/css/field-notes.css">
+  <link rel="stylesheet" href="/css/contact.css">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -562,7 +569,7 @@
         <a href="Yash_Chaudhari_cv.pdf" download class="hidden sm:inline-flex items-center gap-2 rounded-xl border border-white/[.15] bg-white/[.06] backdrop-blur-xl px-4 py-2 text-xs text-white/80 hover:text-white hover:bg-white/[.12] hover:border-white/[.25] hover:shadow-[0_0_16px_rgba(56,221,118,0.15)] transition-all duration-300">
           Download CV <i class="bi bi-download text-[#38dd76]"></i>
         </a>
-        <button id="ham" class="md:hidden p-2 flex flex-col gap-[5px]" aria-label="Menu">
+        <button id="ham" class="md:hidden p-2 flex flex-col gap-[5px]" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
           <span id="b1" class="block w-6 h-[1.5px] bg-white transition-all duration-300" style="transition-timing-function:cubic-bezier(0.77,0,0.175,1)"></span>
           <span id="b2" class="block w-6 h-[1.5px] bg-white transition-all duration-300" style="transition-timing-function:cubic-bezier(0.77,0,0.175,1)"></span>
         </button>
@@ -571,7 +578,7 @@
   </nav>
 
   <!-- MOBILE MENU OVERLAY -->
-  <div id="mobile-menu" class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-7">
+  <div id="mobile-menu" inert aria-hidden="true" class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-7">
     <a href="#home"       class="mm-link font-serif italic text-4xl text-white hover:text-white/70 transition-colors">Home</a>
     <a href="#about"      class="mm-link font-serif italic text-4xl text-white hover:text-white/70 transition-colors">About</a>
     <a href="#experience" class="mm-link font-serif italic text-4xl text-white hover:text-white/70 transition-colors">Experience</a>
@@ -1349,14 +1356,41 @@
     </div>
   </section>
 
+  <!-- An additive, isolated notebook; existing portfolio sections are unchanged. -->
+  <section id="field-notes" aria-label="AI sketchbook gallery">
+    <header class="fn-heading"><p>AI, imagined in ink</p><h2>Latent <em>Atlas</em></h2></header>
+    <p id="fn-instructions" class="fn-sr">Use the arrow buttons or left and right keys to turn pages. Drag a page on desktop. The plate selector jumps to any illustration.</p>
+    <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><filter id="fn-motion-blur"><feGaussianBlur stdDeviation="3 0"/></filter></defs></svg>
+    <div class="fn-stage">
+      <div class="fn-scene"><div class="fn-tilt"><div class="fn-book" role="group" aria-label="Illustrated AI sketchbook" aria-describedby="fn-instructions" tabindex="0">
+        <div class="fn-full"><img src="/assets/sketchbook/attention-small.webp" srcset="/assets/sketchbook/attention-small.webp 768w, /assets/sketchbook/attention.webp 1536w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1080px) calc(100vw - 100px), 940px" alt="A watercolour observatory of telescopes and constellations, a visual metaphor for Transformer attention." width="1536" height="1024" loading="lazy" decoding="async"></div>
+      </div></div></div>
+      <div class="fn-zoom-layer" aria-hidden="true"><div class="fn-zoom-inner"></div></div>
+      <div class="fn-loupe" aria-hidden="true"><span class="fn-handle"></span></div>
+      <button class="fn-arrow" type="button" data-prev aria-label="Previous spread">‹</button>
+      <button class="fn-arrow" type="button" data-next aria-label="Next spread">›</button>
+    </div>
+    <p class="fn-caption" aria-live="polite" aria-atomic="true">The attention observatory</p>
+    <div class="fn-toolbar" role="group" aria-label="Sketchbook controls">
+      <button type="button" data-zoom-out aria-label="Zoom out">−</button>
+      <span class="fn-zoom-read" data-zoom-read>100%</span>
+      <button type="button" data-zoom-in aria-label="Zoom in">+</button>
+      <span class="fn-divider" aria-hidden="true"></span>
+      <button type="button" data-lens aria-label="Toggle magnifying glass" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8" cy="8" r="5.5"/><path d="m12 12 5 5"/></svg></button>
+      <span class="fn-divider" aria-hidden="true"></span>
+      <select data-plates aria-label="Choose illustration"><option value="0" data-image="/assets/sketchbook/attention.webp" data-small="/assets/sketchbook/attention-small.webp" data-alt="A watercolour observatory of telescopes and constellations, a visual metaphor for Transformer attention.">01 The attention observatory</option><option value="1" data-image="/assets/sketchbook/retrieval.webp" data-small="/assets/sketchbook/retrieval-small.webp" data-alt="A botanical library with threads linking a reading desk to selected volumes, a metaphor for retrieval-augmented generation.">02 The retrieval library</option><option value="2" data-image="/assets/sketchbook/embeddings.webp" data-small="/assets/sketchbook/embeddings-small.webp" data-alt="Related plants, birds and shells form islands on a celestial map, a metaphor for embedding space.">03 An atlas of meaning</option><option value="3" data-image="/assets/sketchbook/diffusion.webp" data-small="/assets/sketchbook/diffusion-small.webp" data-alt="A kingfisher emerges from loose pigment into fine ink detail, a metaphor for diffusion models.">04 Order from noise</option><option value="4" data-image="/assets/sketchbook/lora.webp" data-small="/assets/sketchbook/lora-small.webp" data-alt="An antique orrery with small green adjustment gears, a metaphor for low-rank adaptation.">05 The smallest adjustment</option><option value="5" data-image="/assets/sketchbook/experts.webp" data-small="/assets/sketchbook/experts-small.webp" data-alt="Railways route light between specialist workshops, a metaphor for mixture-of-experts routing.">06 A city of experts</option><option value="6" data-image="/assets/sketchbook/vision.webp" data-small="/assets/sketchbook/vision-small.webp" data-alt="A heron and its reflection alongside optical studies, a metaphor for computer vision.">07 Learning to see</option><option value="7" data-image="/assets/sketchbook/agents.webp" data-small="/assets/sketchbook/agents-small.webp" data-alt="A garden of branching paths with a compass and drafting desk, a metaphor for planning agents.">08 Paths and possibilities</option></select>
+    </div>
+  </section>
+
   <!-- ═══════ SECTION 7: CONTACT ═══════ -->
   <section id="contact" class="relative overflow-hidden px-5 sm:px-8 md:px-12 py-24" style="z-index:11">
-    <!-- Cinematic Video Background (Centered) -->
-    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 lazy-video" style="object-position: center center;" data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa.mp4" preload="none" disablePictureInPicture disableRemotePlayback poster="/media/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa_poster.webp"></video>
     <div class="max-w-6xl mx-auto relative z-10">
-      <div class="reveal mb-12">
+      <div class="contact-heading-row">
+      <div class="reveal">
         <div class="badge-lb rounded-sm inline-flex mb-4"><span class="font-mono text-[10px] uppercase tracking-[.15em] text-white">Get In Touch</span></div>
         <h2 class="font-serif italic text-4xl sm:text-5xl text-white drop-shadow-xl">Let's build something<br><em style="font-family:'Instrument Serif',serif;font-style:italic">remarkable together.</em></h2>
+      </div>
+
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
         <a href="mailto:yashchaudhari802@gmail.com" class="reveal contact-card glass-panel rounded-2xl p-4 sm:p-6 flex flex-col items-center gap-3 text-center" style="border-radius:18px;transition-delay:80ms">
@@ -1386,14 +1420,17 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="relative bg-[#090b0d] border-t border-white/[.08] py-8 px-5 sm:px-8 md:px-12" style="z-index:11">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-      <span class="text-white/35 text-xs font-mono uppercase tracking-[.10em]">© <span id="current-year">2026</span> Yash Chaudhari. All rights reserved.</span>
-      <a href="#home" class="text-white/35 text-xs font-mono uppercase tracking-[.10em] hover:text-white/60 transition-colors duration-300">Back to top ↑</a>
+  <footer class="portfolio-footer" style="z-index:11">
+    <div class="footer-inner">
+      <a class="footer-signature" href="#home" aria-label="Yash Chaudhari, home">Yash Chaudhari<span>AI &amp; Machine Learning</span></a>
+      <p class="footer-copyright">© <span id="current-year">2026</span> Yash Chaudhari.<br>All rights reserved.</p>
     </div>
   </footer>
 
+  <a class="contact-to-top" hidden href="#home" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a>
+
   <script type="module" src="/script/page.mjs"></script>
+  <script type="module" src="/script/field-notes.mjs"></script>
 
 
 

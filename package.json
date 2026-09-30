@@ -2,7 +2,7 @@
   "name": "yash-portfolio",
   "private": true,
   "scripts": {
-    "test": "node --preserve-symlinks --preserve-symlinks-main --test tests/media.test.mjs tests/preview-security.test.mjs",
+    "test": "node --preserve-symlinks --preserve-symlinks-main --test tests/media.test.mjs tests/preview-security.test.mjs tests/field-notes.test.mjs",
     "build:media": "node --preserve-symlinks --preserve-symlinks-main tools/build-media.mjs",
     "preview": "node --preserve-symlinks --preserve-symlinks-main tools/preview.mjs",
     "build:css": "node --preserve-symlinks --preserve-symlinks-main node_modules/tailwindcss/lib/cli.js -i css/tailwind-input.css -o css/tailwind.css --minify"

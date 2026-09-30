@@ -6,7 +6,8 @@ export function getDeviceProfile(nav = navigator) {
   const saveData = nav.connection?.saveData || false;
   const tier = saveData || mem <= 2 || conn === '2g' || conn === 'slow-2g' ? 'low'
     : mem <= 4 || conn === '3g' ? 'mid' : 'high';
-  return Object.freeze({ tier, mem, cores, videoRendition: tier === 'high' ? 'high' : tier === 'mid' ? 'mid' : 'low',
+  const posterOnly = saveData || mem <= 2 || cores <= 2 || ["slow-2g", "2g", "3g"].includes(conn);
+  return Object.freeze({ tier, mem, cores, posterOnly, videoRendition: tier === 'high' ? 'high' : tier === 'mid' ? 'mid' : 'low',
     heroFrameSet: tier === 'high' ? 'desktop' : 'mobile', canvasDPRCap: tier === 'low' ? 1.5 : 2,
     canvasFPSCap: tier === 'low' ? 24 : tier === 'mid' ? 30 : 60, videoConcurrencyLimit: tier === 'low' ? 1 : 2 });
 }

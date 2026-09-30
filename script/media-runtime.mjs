@@ -18,6 +18,11 @@ export function initMedia() {
   fetch('/media/manifest.json').then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
     .catch(error => { console.warn('[video] using original renditions', error); return {}; })
     .then(manifest => { videos = new VideoManager(document.querySelectorAll('video[data-src]'), manifest); videos.suspend(pageHidden); });
+  if (profile.posterOnly) {
+    document.getElementById('particle-canvas').hidden=true;
+    window.mediaDiagnostics=()=>({profile,hero:heroStats?.(),videos:videos?.stats,particleWorker:false});
+    return;
+  }
   let canvas = document.getElementById('particle-canvas');
   let unregister, resize;
   function fallback() {

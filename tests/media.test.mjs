@@ -76,7 +76,7 @@ test('renditions promote when cover geometry needs more pixels', () => {
   assert.equal(manager.select({ dataset: { src: 'clip' }, getBoundingClientRect: () => ({ width: 200, height: 100 }) }), 'low');
   assert.equal(manager.select({ dataset: { src: 'clip' }, getBoundingClientRect: () => ({ width: 600, height: 350 }) }), 'mid');
   assert.equal(manager.select({ dataset: { src: 'clip' }, getBoundingClientRect: () => ({ width: 400, height: 900 }) }), 'high');
-  assert.equal(manager.limit, 1);
+  assert.equal(manager.limit, 0);
 });
 test('shared driver cancels when offscreen/hidden and never schedules duplicate loops', () => {
   const pending = new Map(); let next = 1, calls = 0;
@@ -96,7 +96,7 @@ test('shared driver cancels when offscreen/hidden and never schedules duplicate 
 test('page has no eager video source, extraction loop, or private animation loops', () => {
   const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   assert.doesNotMatch(html, /extractFrames|seeked|requestAnimationFrame|<source\b|cdn.tailwindcss.com/);
-  const videos = [...html.matchAll(/<video\b([^>]*)>/g)]; assert.equal(videos.length, 7);
+  const videos = [...html.matchAll(/<video\b([^>]*)>/g)]; assert.equal(videos.length, 6);
   for (const [, attrs] of videos) {
     assert.doesNotMatch(attrs, /\ssrc=/);
     for (const attribute of ['playsinline', 'muted', 'disablePictureInPicture', 'disableRemotePlayback', 'poster='])
@@ -146,4 +146,13 @@ test('generated manifest references complete hero sequences and video variants',
   assert.equal(Object.keys(videos).length, 6);
   for (const variants of Object.values(videos)) for (const path of [variants.poster, variants.mid.src, variants.low.src])
     assert.ok(existsSync(new URL(`.${path}`, root)));
+});
+
+test('constrained connections never attach or play background video sources',()=>{
+ for(const nav of [{connection:{effectiveType:'3g'}},{connection:{saveData:true}},{deviceMemory:2},{hardwareConcurrency:2}]){
+  const video={dataset:{src:'large.mp4'},addEventListener(){},getAttribute(){return null;},getBoundingClientRect(){return {top:0,bottom:600};},set src(_){throw new Error('unexpected download');},play(){throw new Error('unexpected playback');}};
+  const manager=new VideoManager([video],{},getDeviceProfile(nav));manager.zone.add(video);manager.reconcile();
+  assert.equal(manager.stats.sources,0);assert.equal(manager.stats.active,0);
+ }
+ assert.equal(getDeviceProfile({deviceMemory:8,hardwareConcurrency:8}).posterOnly,false);
 });

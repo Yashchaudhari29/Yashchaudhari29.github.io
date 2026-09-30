@@ -4,6 +4,7 @@ import { driver } from './animation-driver.mjs';
 
 export async function initHero() {
   const canvas = document.getElementById('vCanvas'), poster = document.getElementById('vPoster');
+  if (profile.posterOnly) { canvas.style.opacity='0'; poster.style.opacity='1'; return () => ({mode:'poster'}); }
   const context = canvas.getContext('2d');
   let manifest;
   try {
