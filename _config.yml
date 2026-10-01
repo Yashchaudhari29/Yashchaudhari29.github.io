@@ -10,6 +10,5 @@ exclude:
   - css/tailwind-input.css
   - MEDIA-PERFORMANCE.md
   - SEO-SECURITY.md
-  - inject.py
-  - inject_projects.py
-  - script.py
+  - PREDEPLOY-AUDIT.md
+  - UNUSED-FILES-AUDIT.md

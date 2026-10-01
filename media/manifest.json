@@ -88,23 +88,5 @@
       "width": 854,
       "height": 480
     }
-  },
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa.mp4": {
-    "high": {
-      "src": "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa.mp4",
-      "width": 1920,
-      "height": 1080
-    },
-    "poster": "/media/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa_poster.webp",
-    "mid": {
-      "src": "/media/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa_mid.mp4",
-      "width": 1280,
-      "height": 720
-    },
-    "low": {
-      "src": "/media/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa_low.mp4",
-      "width": 854,
-      "height": 480
-    }
   }
 }

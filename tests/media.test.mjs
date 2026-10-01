@@ -143,7 +143,9 @@ test('generated manifest references complete hero sequences and video variants',
   for (const set of Object.values(frames)) for (let i = 0; i < set.count; i++)
     assert.ok(existsSync(new URL(`.${set.base}frame_${String(i).padStart(3, '0')}.webp`, root)));
   const videos = JSON.parse(readFileSync(new URL('media/manifest.json', root)));
-  assert.equal(Object.keys(videos).length, 6);
+  const html = readFileSync(new URL('index.html', root), 'utf8');
+  const sources = [...new Set([...html.matchAll(/data-src="([^"]+\.mp4)"/g)].map(match => match[1]))];
+  assert.deepEqual(Object.keys(videos).sort(), sources.sort());
   for (const variants of Object.values(videos)) for (const path of [variants.poster, variants.mid.src, variants.low.src])
     assert.ok(existsSync(new URL(`.${path}`, root)));
 });
